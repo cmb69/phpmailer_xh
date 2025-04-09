@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Phpmailer" default="help">
+
+  <target name="help" description="lists available targets">
+    <exec executable="phing" outputProperty="help">
+      <arg value="-l"/>
+    </exec>
+    <echo>${help}</echo>
+  </target>
+
+  <target name="gen-help" description="builds help.htm from README.md">
+    <exec executable="pandoc" passthru="true" checkreturn="true">
+      <arg line="-s --eol=lf --template=help/template.htm -Vlang=en -Vpagetitle=&quot;User Manual&quot; -o help/help.htm README.md -t html"/>
+    </exec>
+    <exec executable="pandoc" passthru="true" checkreturn="true">
+      <arg line="-s --eol=lf --template=help/template.htm -Vlang=de -Vpagetitle=&quot;Benutzerhandbuch&quot; -o help/help_de.htm README_DE.md -t html"/>
+    </exec>
+  </target>
+
+  <target name="build" description="builds a distributable ZIP archive">
+    <exec executable="git" passthru="true" checkreturn="true">
+      <arg line="archive -o export.zip HEAD"/>
+    </exec>
+    <unzip file="export.zip" todir="export"/>
+    <delete file="export.zip"/>
+    <move todir="dist">
+      <fileset dir="export">
+        <exclude name=".phive/**"/>
+        <exclude name="help/template.htm"/>
+        <exclude name="README*.md"/>
+        <exclude name="build.xml"/>
+        <exclude name="teplad.xml"/>
+      </fileset>
+    </move>
+    <delete dir="export"/>
+    <copy file="dist/config/config.php" tofile="dist/config/defaultconfig.php"/>
+    <copy file="dist/languages/en.php" tofile="dist/languages/default.php"/>
+    <zip destfile="Phpmailer_XH-1.0-dev.zip" basedir="dist" prefix="phpmailer/"/>
+    <delete dir="dist"/>
+  </target>
+
+</project>
