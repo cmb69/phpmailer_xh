@@ -1,5 +1,6 @@
 <?php
 
+$plugin_tx['phpmailer']['syscheck_access_protection']="%s ist zugriffsgeschützt";
 $plugin_tx['phpmailer']['syscheck_phpversion']="PHP-Version ≥ %s";
 $plugin_tx['phpmailer']['syscheck_writable']="%s ist schreibbar";
 $plugin_tx['phpmailer']['syscheck_xhversion']="CMSimple_XH-Version ≥ %s";

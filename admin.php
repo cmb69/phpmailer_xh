@@ -39,6 +39,9 @@ function phpmailer_info(): string
         $type = is_writable($folder) ? "success" : "warning";
         $o .= XH_message($type, $ptx["syscheck_writable"], $folder) . "\n";
     }
+    $file = $pth["folder"]["plugins"] . "phpmailer/config/config.php";
+    $type = XH_isAccessProtected($file) ? "success" : "warning";
+    $o .= XH_message($type, $ptx["syscheck_access_protection"], $file) . "\n";
     return $o;
 }
 
