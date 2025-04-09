@@ -1,5 +1,9 @@
 <?php
 
+$plugin_tx['phpmailer']['syscheck_phpversion']="PHP-Version ≥ %s";
+$plugin_tx['phpmailer']['syscheck_writable']="%s ist schreibbar";
+$plugin_tx['phpmailer']['syscheck_xhversion']="CMSimple_XH-Version ≥ %s";
+
 $plugin_tx['phpmailer']['cf_smtp_enabled']="Ob E-Mails direkt an einen SMTP-Server gesendet werden sollen. Falls ja, dann müssen die folgenden Konfigurationseinstellungen angegeben werden; erfragen Sie die Information von Ihrem Mail-Provider. Deaktivien, um die klassische PHP mail Funktion zu verwenden.";
 $plugin_tx['phpmailer']['cf_smtp_host']="Der Name des SMTP-Hosts.";
 $plugin_tx['phpmailer']['cf_smtp_port']="Der Port des SMTP-Hosts.";

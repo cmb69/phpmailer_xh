@@ -19,6 +19,29 @@
  * along with Phpmailer_XH.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+const PHPMAILER_VERSION = "1.0-dev";
+
+function phpmailer_info(): string
+{
+    global $pth, $plugin_tx, $title;
+
+    $ptx = $plugin_tx["phpmailer"];
+    $title = "Phpmailer " . XH_hsc(PHPMAILER_VERSION);
+    $o = "<h1>$title</h1>\n";
+    $phpVersion = "7.1.0";
+    $type = version_compare(PHP_VERSION, $phpVersion) >= 0 ? "success" : "fail";
+    $o .= XH_message($type, $ptx["syscheck_phpversion"], $phpVersion) . "\n";
+    $xhVersion = "1.7.0";
+    $type = version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $xhVersion") >= 0 ? "success" : "fail";
+    $o .= XH_message($type, $ptx["syscheck_xhversion"], $xhVersion) . "\n";
+    foreach (["config", "languages"] as $folder) {
+        $folder = $pth["folder"]["plugins"] . "phpmailer/$folder";
+        $type = is_writable($folder) ? "success" : "warning";
+        $o .= XH_message($type, $ptx["syscheck_writable"], $folder) . "\n";
+    }
+    return $o;
+}
+
 if (!defined("CMSIMPLE_XH_VERSION")) {
     http_response_code(403);
     exit;
@@ -26,8 +49,11 @@ if (!defined("CMSIMPLE_XH_VERSION")) {
 
 XH_registerStandardPluginMenuItems(false);
 if (XH_wantsPluginAdministration("phpmailer")) {
-    $o .= print_plugin_admin('off');
+    $o .= print_plugin_admin("off");
     switch ($admin) {
+        case "":
+            $o .= phpmailer_info();
+            break;
         default:
             $o .= plugin_admin_common();
     }
