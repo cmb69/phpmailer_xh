@@ -19,7 +19,7 @@
  * along with Phpmailer_XH.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-const PHPMAILER_VERSION = "1.0-dev";
+const PHPMAILER_VERSION = "6.9.3-dev";
 
 function phpmailer_info(): string
 {
