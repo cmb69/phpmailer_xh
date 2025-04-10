@@ -59,7 +59,8 @@ Ihren Anforderungen anpassen.
 ## Verwendung
 
 Standardmäßig verwendet Phpmailer_XH die `mail()` Funktion von PHP,
-die normalerweise nur ein einfacher sendmail Wrapper ist.
+die normalerweise nur ein einfacher
+[sendmail](https://de.wikipedia.org/wiki/Sendmail) Wrapper ist.
 Diese Art E-Mails zu versenden hat einige Einschränkungen,
 und wird von einigen Webservern nicht mehr unterstützt.
 

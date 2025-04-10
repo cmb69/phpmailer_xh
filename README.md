@@ -57,7 +57,7 @@ or customize them according to your needs.
 ## Usage
 
 Per default, Phpmailer_XH uses the `mail()` function of PHP,
-which is typically just a simple sendmail wrapper.
+which is typically just a simple [sendmail](https://en.wikipedia.org/wiki/Sendmail) wrapper.
 This way to send mails has some limitations,
 and is no longer supported by some Webservers.
 
