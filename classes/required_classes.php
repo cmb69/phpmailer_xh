@@ -24,9 +24,10 @@ use PHPMailer\PHPMailer\SMTP;
 
 function phpmailer_create(): PHPMailer
 {
-    global $plugin_cf;
+    global $sl, $pth, $plugin_cf;
     $pcf = $plugin_cf["phpmailer"];
     $mailer = new PHPMailer();
+    $mailer->setLanguage($sl, $pth["folder"]["plugins"] . "phpmailer/languages/phpmailer/");
     $mailer->setFrom($pcf["sender_address"], $pcf["sender_name"]);
     if ($pcf["smtp_enabled"]) {
         $mailer->isSMTP();

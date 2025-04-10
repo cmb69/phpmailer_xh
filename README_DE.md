@@ -139,6 +139,9 @@ Beachten Sie weiterhin, dass Sie die Sender/From Adresse durch den
 Aufruf von `::setFrom()` nicht ändern dürfen, da diese bereits vorkonfiguriert ist.
 Rufen Sie statt dessen `::addReplyTo()` auf, um die gewünschte Adresse zu setzen.
 
+Es ist ebenfalls nicht mehr nötig `::setLanguage()` aufzurufen,
+da dies bereits von `phpmailer_create()` getan wurde.
+
 ## Fehlerbehebung
 
 Melden Sie Programmfehler und stellen Sie Supportanfragen entweder auf

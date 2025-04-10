@@ -134,6 +134,9 @@ Also note that you must not change the sender/from address
 by calling `::setFrom()`, since this is alreay configured.
 Instead, call `::addReplyTo()` to set this address.
 
+Note there is no more need to call `::setLanguage()`,
+since this is already done by `phpmailer_create()`.
+
 ## Troubleshooting
 
 Report bugs and ask for support either on
