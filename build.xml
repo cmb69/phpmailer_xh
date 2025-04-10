@@ -36,7 +36,7 @@
     <delete dir="export"/>
     <copy file="dist/config/config.php" tofile="dist/config/defaultconfig.php"/>
     <copy file="dist/languages/en.php" tofile="dist/languages/default.php"/>
-    <zip destfile="Phpmailer_XH-0.1.zip" basedir="dist" prefix="phpmailer/"/>
+    <zip destfile="Phpmailer_XH-0.2-dev.zip" basedir="dist" prefix="phpmailer/"/>
     <delete dir="dist"/>
   </target>
 
