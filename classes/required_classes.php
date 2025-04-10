@@ -20,11 +20,11 @@
  */
 
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 
 function phpmailer_create(): PHPMailer
 {
     global $plugin_cf;
-
     $pcf = $plugin_cf["phpmailer"];
     $mailer = new PHPMailer();
     if ($pcf["smtp_enabled"]) {
@@ -38,6 +38,14 @@ function phpmailer_create(): PHPMailer
             $mailer->SMTPAuth = true;
             $mailer->Username = $pcf["smtp_username"];
             $mailer->Password = $pcf["smtp_password"];
+        }
+        if (defined("XH_ADM") && XH_ADM && $pcf['smtp_debug']) {
+            $mailer->SMTPDebug = SMTP::DEBUG_CONNECTION;
+            $mailer->Debugoutput = function (string $str, int $level): void {
+                global $plugin_tx, $e;
+                $kind = $plugin_tx["phpmailer"]["debug_level_$level"];
+                $e .= "<li><b>PHPMailer $kind:</b><br>" . XH_hsc(rtrim($str)) . "</li>\n";
+            };
         }
     }
     return $mailer;

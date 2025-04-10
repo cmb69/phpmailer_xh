@@ -1,5 +1,9 @@
 <?php
 
+$plugin_tx['phpmailer']['debug_level_1']="Client";
+$plugin_tx['phpmailer']['debug_level_2']="Server";
+$plugin_tx['phpmailer']['debug_level_3']="Connection";
+
 $plugin_tx['phpmailer']['syscheck_access_protection']="%s is access protected";
 $plugin_tx['phpmailer']['syscheck_phpversion']="PHP version ≥ %s";
 $plugin_tx['phpmailer']['syscheck_writable']="%s is writable";
