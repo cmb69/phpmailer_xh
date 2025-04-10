@@ -116,7 +116,8 @@ ist ein `PHPMailer` Exemplar durch Aufruf von
     phpmailer_create()
 
 zu erzeugen. Die Funktion gibt einen vorkonfigurierten `PHPMailer` zurück,
-der dann wie zuvor verwendet werden kann, beispielsweise:
+der dann nahezu (siehe weiter unten) wie zuvor verwendet werden kann,
+beispielsweise:
 
     $mail = phpmailer_create();
     $mail->addAddress("joe@example.com");
@@ -127,6 +128,16 @@ der dann wie zuvor verwendet werden kann, beispielsweise:
 Um die Phpmailer_XH Konfiguration auf `PHPMailer\Mail` anzuwenden:
 
     $mail = new PHPMailer\Mail(phpmailer_create());
+
+Beachten Sie, dass sie keine der `PHPMailer` Methoden aufrufen dürfen,
+die die Versandmethode ändern (d.h.  `::isSMTP()`, `::isMail()` und `::isSendmail()`),
+da dies die Phpmailer_XH Konfiguration übersteuern würde.
+Das gilt ebenso für alle SMTP Konfigurationsänderungen am
+`PHPMailer` Exemplar.
+
+Beachten Sie weiterhin, dass Sie die Sender/From Adresse durch den
+Aufruf von `::setFrom()` nicht ändern dürfen, da diese bereits vorkonfiguriert ist.
+Rufen Sie statt dessen `::addReplyTo()` auf, um die gewünschte Adresse zu setzen.
 
 ## Fehlerbehebung
 

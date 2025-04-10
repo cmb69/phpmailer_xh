@@ -112,7 +112,7 @@ create an instance of `PHPMailer` by calling
     phpmailer_create()
 
 This function returns a preconfigured `PHPMailer` which then can
-be used like before, for instance:
+be used almost (see below) like before, for instance:
 
     $mail = phpmailer_create();
     $mail->addAddress("joe@example.com");
@@ -123,6 +123,16 @@ be used like before, for instance:
 To apply the Phpmailer_XH configuration to `PHPMailer\Mail`:
 
     $mail = new PHPMailer\Mail(phpmailer_create());
+
+Note that you must not call any of the `PHPMailer` methods which change
+the sending method (i.e. `::isSMTP()`, `::isMail()` and `::isSendmail()`),
+since that would override the Phpmailer_XH configuration.
+That also applies to any SMTP configuration changes to the `PHPMailer`
+instance.
+
+Also note that you must not change the sender/from address
+by calling `::setFrom()`, since this is alreay configured.
+Instead, call `::addReplyTo()` to set this address.
 
 ## Troubleshooting
 

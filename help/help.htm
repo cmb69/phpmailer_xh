@@ -75,7 +75,7 @@
 <p>For plugins using <code>XH\Mail</code>, there is a shim available: <code>PHPMailer\Mail</code>, which roughly works like before, but uses PHPMailer under the hood.</p>
 <p>However, either variant would ignore the configuration of Phpmailer_XH, unless the plugin would apply that manually. The convenient way to use the Phpmailer_XH configuration is to create an instance of <code>PHPMailer</code> by calling</p>
 <pre><code>phpmailer_create()</code></pre>
-<p>This function returns a preconfigured <code>PHPMailer</code> which then can be used like before, for instance:</p>
+<p>This function returns a preconfigured <code>PHPMailer</code> which then can be used almost (see below) like before, for instance:</p>
 <pre><code>$mail = phpmailer_create();
 $mail-&gt;addAddress(&quot;joe@example.com&quot;);
 $mail-&gt;Subject = &quot;Hey Joe!&quot;;
@@ -83,6 +83,8 @@ $mail-&gt;Body = &quot;where you goin’ with that gun in your hand?&quot;;
 $mail-&gt;send();</code></pre>
 <p>To apply the Phpmailer_XH configuration to <code>PHPMailer\Mail</code>:</p>
 <pre><code>$mail = new PHPMailer\Mail(phpmailer_create());</code></pre>
+<p>Note that you must not call any of the <code>PHPMailer</code> methods which change the sending method (i.e. <code>::isSMTP()</code>, <code>::isMail()</code> and <code>::isSendmail()</code>), since that would override the Phpmailer_XH configuration. That also applies to any SMTP configuration changes to the <code>PHPMailer</code> instance.</p>
+<p>Also note that you must not change the sender/from address by calling <code>::setFrom()</code>, since this is alreay configured. Instead, call <code>::addReplyTo()</code> to set this address.</p>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <p>Report bugs and ask for support either on <a href="https://github.com/cmb69/phpmailer_xh/issues">Github</a> or in the <a href="https://cmsimpleforum.com/">CMSimple_XH Forum</a>.</p>
 <h2 id="license">License</h2>
