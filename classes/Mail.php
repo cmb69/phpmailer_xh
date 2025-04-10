@@ -19,9 +19,9 @@ class Mail
     /** @var PHPMailer */
     private $mailer;
 
-    public function __construct()
+    public function __construct(?PHPMailer $mailer = null)
     {
-        $this->mailer = new PHPMailer();
+        $this->mailer = $mailer ?? new PHPMailer();
         $this->mailer->CharSet = PHPMailer::CHARSET_UTF8;
     }
 
