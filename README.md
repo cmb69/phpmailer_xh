@@ -11,6 +11,7 @@ and frictionless usage by other CMSimple_XH plugins.
 - [Installation](#installation)
 - [Settings](#settings)
 - [Usage](#usage)
+  - [For Developers](#for-developers)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
 - [Credits](#credits)
@@ -73,6 +74,36 @@ file, but this may not be recognized by your server, so you need to take
 suitable measures yourself.  Before entering the sensitive credentials into
 the configuration, check whether the system check is green regarding the
 access protection of `config.php`.
+
+### For Developers
+
+Other plugins can use PHPMailer exactly like before; they just need to
+remove their own `require` or `include` statements which include `PHPMailer`
+and possibly some additional helper classes (like `SMTP`), since the
+required classes will be autoloaded by CMSimple_XH.
+
+For plugins using `XH\Mail`, there is a shim available: `PHPMailer\Mail`,
+which roughly works like before, but uses PHPMailer under the hood.
+
+However, either variant would ignore the configuration of Phpmailer_XH,
+unless the plugin would apply that manually.
+The convenient way to use the Phpmailer_XH configuration is to
+create an instance of `PHPMailer` by calling
+
+    phpmailer_create()
+
+This function returns a preconfigured `PHPMailer` which then can
+be used like before, for instance:
+
+    $mail = phpmailer_create();
+    $mail->addAddress("joe@example.com");
+    $mail->Subject = "Hey Joe!";
+    $mail->Body = "where you goin’ with that gun in your hand?";
+    $mail->send();
+
+To apply the Phpmailer_XH configuration to `PHPMailer\Mail`:
+
+    $mail = new PHPMailer\Mail(phpmailer_create());
 
 ## Troubleshooting
 

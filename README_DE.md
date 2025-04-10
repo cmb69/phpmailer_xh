@@ -12,6 +12,7 @@ bereit.
 - [Installation](#installation)
 - [Einstellungen](#einstellungen)
 - [Verwendung](#verwendung)
+  - [Für Entwickler](#für-entwickler)
 - [Fehlerbehebung](#fehlerbehebung)
 - [Lizenz](#lizenz)
 - [Danksagung](#danksagung)
@@ -75,6 +76,36 @@ aus, aber diese wird u.U. nicht von Ihrem Server erkannt, so dass Sie selbst
 alternative Maßnahmen ergreifen müssen. Bevor sie die sensiblen Anmeldedaten
 in die Konfiguration eintragen, überprüfen Sie, ob die System-Prüfung bezüglich
 des Zugriffschutzes von `config.php` erfolgreich ist.
+
+### Für Entwickler
+
+Andere Plugins können PHPMailer genau wie zuvor verwenden; sie müssen
+lediglich ihre eigenen `require` oder `include` Anweisungen entfernen,
+die `PHPMailer` und möglicherweise einige andere Hilfsklassen (wie `SMTP`)
+einbinden, da die benötigten Klassen von CMSimple_XH automatisch geladen werden.
+
+Für Plugins, die `XH\Mail` verwenden, gibt es ein Shim: `PHPMailer\Mail`,
+das grob wie zuvor funktioniert, aber unter der Haube PHPMailer verwendet.
+
+Allerdings ignorieren beide Varianten die Konfiguration von Phpmailer_XH;
+diese müsste manual angewendet werden.
+Der bequeme Weg die Phpmailer_XH Konfiguration zu verwenden,
+ist ein `PHPMailer` Exemplar durch Aufruf von
+
+    phpmailer_create()
+
+zu erzeugen. Die Funktion gibt einen vorkonfigurierten `PHPMailer` zurück,
+der dann wie zuvor verwendet werden kann, beispielsweise:
+
+    $mail = phpmailer_create();
+    $mail->addAddress("joe@example.com");
+    $mail->Subject = "Hey Joe!";
+    $mail->Body = "wohin gehst du mit dieser Pistole in deiner Hand?";
+    $mail->send();
+
+Um die Phpmailer_XH Konfiguration auf `PHPMailer\Mail` anzuwenden:
+
+    $mail = new PHPMailer\Mail(phpmailer_create());
 
 ## Fehlerbehebung
 

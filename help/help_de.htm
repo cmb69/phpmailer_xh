@@ -37,7 +37,10 @@
 <li><a href="#download">Download</a></li>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#einstellungen">Einstellungen</a></li>
-<li><a href="#verwendung">Verwendung</a></li>
+<li><a href="#verwendung">Verwendung</a>
+<ul>
+<li><a href="#für-entwickler">Für Entwickler</a></li>
+</ul></li>
 <li><a href="#fehlerbehebung">Fehlerbehebung</a></li>
 <li><a href="#lizenz">Lizenz</a></li>
 <li><a href="#danksagung">Danksagung</a></li>
@@ -62,6 +65,19 @@
 <h2 id="verwendung">Verwendung</h2>
 <p>Standardmäßig verwendet Phpmailer_XH die <code>mail()</code> Funktion von PHP, die normalerweise nur ein einfacher sendmail Wrapper ist. Diese Art E-Mails zu versenden hat einige Einschränkungen, und wird von einigen Webservern nicht mehr unterstützt.</p>
 <p>Daher tun Sie gut daran SMTP-Support in der Konfiguration zu aktivieren. Es ist wichtig alle relevanten Konfigurationeinstellungen sorgfältig einzutragen; erfragen Sie die nötigen Information von Ihrem Mail-Provider. Erfordert der SMTP-Server Authentifizierung (recht wahrscheinlich), müssen Sie den Benutzernamen und das Passwort in der Konfiguration eintragen. Beachten Sie, dass diese Anmeldedaten notwendigerweise im Klartext in <code>plugins/phpmailer/config/config.php</code> gespeichert werden. Daher ist es wichtig, dass der Konfigurationsorder von Phpmailer_XH vor direktem Zugriff geschützt ist. Das Plugin liefert eine entsprechende <code>.htaccess</code> aus, aber diese wird u.U. nicht von Ihrem Server erkannt, so dass Sie selbst alternative Maßnahmen ergreifen müssen. Bevor sie die sensiblen Anmeldedaten in die Konfiguration eintragen, überprüfen Sie, ob die System-Prüfung bezüglich des Zugriffschutzes von <code>config.php</code> erfolgreich ist.</p>
+<h3 id="für-entwickler">Für Entwickler</h3>
+<p>Andere Plugins können PHPMailer genau wie zuvor verwenden; sie müssen lediglich ihre eigenen <code>require</code> oder <code>include</code> Anweisungen entfernen, die <code>PHPMailer</code> und möglicherweise einige andere Hilfsklassen (wie <code>SMTP</code>) einbinden, da die benötigten Klassen von CMSimple_XH automatisch geladen werden.</p>
+<p>Für Plugins, die <code>XH\Mail</code> verwenden, gibt es ein Shim: <code>PHPMailer\Mail</code>, das grob wie zuvor funktioniert, aber unter der Haube PHPMailer verwendet.</p>
+<p>Allerdings ignorieren beide Varianten die Konfiguration von Phpmailer_XH; diese müsste manual angewendet werden. Der bequeme Weg die Phpmailer_XH Konfiguration zu verwenden, ist ein <code>PHPMailer</code> Exemplar durch Aufruf von</p>
+<pre><code>phpmailer_create()</code></pre>
+<p>zu erzeugen. Die Funktion gibt einen vorkonfigurierten <code>PHPMailer</code> zurück, der dann wie zuvor verwendet werden kann, beispielsweise:</p>
+<pre><code>$mail = phpmailer_create();
+$mail-&gt;addAddress(&quot;joe@example.com&quot;);
+$mail-&gt;Subject = &quot;Hey Joe!&quot;;
+$mail-&gt;Body = &quot;wohin gehst du mit dieser Pistole in deiner Hand?&quot;;
+$mail-&gt;send();</code></pre>
+<p>Um die Phpmailer_XH Konfiguration auf <code>PHPMailer\Mail</code> anzuwenden:</p>
+<pre><code>$mail = new PHPMailer\Mail(phpmailer_create());</code></pre>
 <h2 id="fehlerbehebung">Fehlerbehebung</h2>
 <p>Melden Sie Programmfehler und stellen Sie Supportanfragen entweder auf <a href="https://github.com/cmb69/phpmailer_xh/issues">Github</a> oder im <a href="https://cmsimpleforum.com/">CMSimple_XH Forum</a>.</p>
 <h2 id="lizenz">Lizenz</h2>
