@@ -137,6 +137,17 @@ Instead, call `::addReplyTo()` to set this address.
 Note there is no more need to call `::setLanguage()`,
 since this is already done by `phpmailer_create()`.
 
+If you want to check if Phpmailer_XH is installed, just check
+
+    function_exists("phpmailer_create")
+
+If you want to know the version of PHPMailer, you can use something like:
+
+    if (!class_exists(PHPMailer\PHPMailer\PHPMailer::class)) {
+        return null;
+    }
+    return PHPMailer\PHPMailer\PHPMailer::VERSION;
+
 ## Troubleshooting
 
 Report bugs and ask for support either on

@@ -86,6 +86,13 @@ $mail-&gt;send();</code></pre>
 <p>Beachten Sie, dass sie keine der <code>PHPMailer</code> Methoden aufrufen dürfen, die die Versandmethode ändern (d.h. <code>::isSMTP()</code>, <code>::isMail()</code> und <code>::isSendmail()</code>), da dies die Phpmailer_XH Konfiguration übersteuern würde. Das gilt ebenso für alle SMTP Konfigurationsänderungen am <code>PHPMailer</code> Exemplar.</p>
 <p>Beachten Sie weiterhin, dass Sie die Sender/From Adresse durch den Aufruf von <code>::setFrom()</code> nicht ändern dürfen, da diese bereits vorkonfiguriert ist. Rufen Sie statt dessen <code>::addReplyTo()</code> auf, um die gewünschte Adresse zu setzen.</p>
 <p>Es ist ebenfalls nicht mehr nötig <code>::setLanguage()</code> aufzurufen, da dies bereits von <code>phpmailer_create()</code> getan wurde.</p>
+<p>Wollen Sie prüfen, ob Phpmailer_XH installiert ist, dann prüfen Sie</p>
+<pre><code>function_exists(&quot;phpmailer_create&quot;)</code></pre>
+<p>Wollen Sie die Version des PHPMailer erfahren, können Sie etwa das folgende tun:</p>
+<pre><code>if (!class_exists(PHPMailer\PHPMailer\PHPMailer::class)) {
+    return null;
+}
+return PHPMailer\PHPMailer\PHPMailer::VERSION;</code></pre>
 <h2 id="fehlerbehebung">Fehlerbehebung</h2>
 <p>Melden Sie Programmfehler und stellen Sie Supportanfragen entweder auf <a href="https://github.com/cmb69/phpmailer_xh/issues">Github</a> oder im <a href="https://cmsimpleforum.com/">CMSimple_XH Forum</a>.</p>
 <h2 id="lizenz">Lizenz</h2>

@@ -86,6 +86,13 @@ $mail-&gt;send();</code></pre>
 <p>Note that you must not call any of the <code>PHPMailer</code> methods which change the sending method (i.e. <code>::isSMTP()</code>, <code>::isMail()</code> and <code>::isSendmail()</code>), since that would override the Phpmailer_XH configuration. That also applies to any SMTP configuration changes to the <code>PHPMailer</code> instance.</p>
 <p>Also note that you must not change the sender/from address by calling <code>::setFrom()</code>, since this is alreay configured. Instead, call <code>::addReplyTo()</code> to set this address.</p>
 <p>Note there is no more need to call <code>::setLanguage()</code>, since this is already done by <code>phpmailer_create()</code>.</p>
+<p>If you want to check if Phpmailer_XH is installed, just check</p>
+<pre><code>function_exists(&quot;phpmailer_create&quot;)</code></pre>
+<p>If you want to know the version of PHPMailer, you can use something like:</p>
+<pre><code>if (!class_exists(PHPMailer\PHPMailer\PHPMailer::class)) {
+    return null;
+}
+return PHPMailer\PHPMailer\PHPMailer::VERSION;</code></pre>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <p>Report bugs and ask for support either on <a href="https://github.com/cmb69/phpmailer_xh/issues">Github</a> or in the <a href="https://cmsimpleforum.com/">CMSimple_XH Forum</a>.</p>
 <h2 id="license">License</h2>
