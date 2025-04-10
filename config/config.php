@@ -1,6 +1,9 @@
 <?php
 
-$plugin_cf['phpmailer']['smtp_enabled']="true";
+$plugin_cf['phpmailer']['sender_address']="";
+$plugin_cf['phpmailer']['sender_name']="";
+
+$plugin_cf['phpmailer']['smtp_enabled']="";
 $plugin_cf['phpmailer']['smtp_host']="";
 $plugin_cf['phpmailer']['smtp_port']="";
 $plugin_cf['phpmailer']['smtp_tls']="";

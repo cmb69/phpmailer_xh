@@ -19,11 +19,13 @@
  * along with Phpmailer_XH.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use PHPMailer\PHPMailer\PHPMailer;
+
 const PHPMAILER_VERSION = "6.9.3-dev";
 
 function phpmailer_info(): string
 {
-    global $pth, $plugin_tx, $title;
+    global $pth, $plugin_cf, $plugin_tx, $title;
 
     $ptx = $plugin_tx["phpmailer"];
     $title = "Phpmailer " . XH_hsc(PHPMAILER_VERSION);
@@ -42,6 +44,8 @@ function phpmailer_info(): string
     $file = $pth["folder"]["plugins"] . "phpmailer/config/config.php";
     $type = XH_isAccessProtected($file) ? "success" : "warning";
     $o .= XH_message($type, $ptx["syscheck_access_protection"], $file) . "\n";
+    $type = PHPMailer::validateAddress($plugin_cf["phpmailer"]["sender_address"]) ? "success" : "warning";
+    $o .= XH_message($type, $ptx["syscheck_sender"]) . "\n";
     return $o;
 }
 

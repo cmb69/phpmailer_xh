@@ -11,6 +11,7 @@ and frictionless usage by other CMSimple_XH plugins.
 - [Installation](#installation)
 - [Settings](#settings)
 - [Usage](#usage)
+  - [SMTP](#smtp)
   - [For Developers](#for-developers)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
@@ -55,6 +56,14 @@ if there is no appropriate language file available,
 or customize them according to your needs.
 
 ## Usage
+
+First, you should configure your email address
+(`Plugins` → `Phpmailer` → `Config` -> `Sender` → `Address`).
+The system check will do a basic validity check of the address.
+
+Then you are encouraged to enable SMTP; see the following section.
+
+### SMTP
 
 Per default, Phpmailer_XH uses the `mail()` function of PHP,
 which is typically just a simple [sendmail](https://en.wikipedia.org/wiki/Sendmail) wrapper.

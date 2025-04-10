@@ -12,6 +12,7 @@ bereit.
 - [Installation](#installation)
 - [Einstellungen](#einstellungen)
 - [Verwendung](#verwendung)
+  -  [SMTP](#smtp)
   - [Für Entwickler](#für-entwickler)
 - [Fehlerbehebung](#fehlerbehebung)
 - [Lizenz](#lizenz)
@@ -57,6 +58,15 @@ entsprechende Sprachdatei zur Verfügung steht, oder sie entsprechend
 Ihren Anforderungen anpassen.
 
 ## Verwendung
+
+Zunächst sollten Sie Ihre E-Mail-Adresse konfigurieren
+(`Plugins` → `Phpmailer` → `Konfiguration` -> `Sender` → `Address`).
+Die Systemprüfung wird eine Plausibilitätsprüfung der Adresse durchführen.
+
+Dann sollten Sie die Aktivierung von SMTP in Erwägung ziehen;
+siehe den folgenden Abschnitt.
+
+### SMTP
 
 Standardmäßig verwendet Phpmailer_XH die `mail()` Funktion von PHP,
 die normalerweise nur ein einfacher

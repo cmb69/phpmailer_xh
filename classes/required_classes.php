@@ -27,6 +27,7 @@ function phpmailer_create(): PHPMailer
     global $plugin_cf;
     $pcf = $plugin_cf["phpmailer"];
     $mailer = new PHPMailer();
+    $mailer->setFrom($pcf["sender_address"], $pcf["sender_name"]);
     if ($pcf["smtp_enabled"]) {
         $mailer->isSMTP();
         $mailer->Host = $pcf["smtp_host"];
