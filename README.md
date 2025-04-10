@@ -1,5 +1,9 @@
 # Phpmailer_XH
 
+Phpmailer_XH provides [PHPMailer](https://github.com/PHPMailer/PHPMailer),
+a full-featured email creation and transfer component for PHP, for easy
+and frictionless usage by other CMSimple_XH plugins.
+
 ## Table of Contents
 
 - [Requirements](#requirements)
