@@ -75,6 +75,16 @@ suitable measures yourself.  Before entering the sensitive credentials into
 the configuration, check whether the system check is green regarding the
 access protection of `config.php`.
 
+If you have trouble with the SMTP configuration,
+i.e. some plugin using Phpmailer_XH cannot send emails,
+you can enable the `SMTP` → `Debug` configuration option.
+When you are logged in as administrator, a detailed log
+of the communication with the SMTP server will be shown if a mail is sent
+(note that this debug output may contain sensitve information;
+therefore it is never shown to visitors of your site).
+The debug output may already be sufficient for you to solve the issue;
+otherwise see [Troubleshooting](#troubleshooting).
+
 ### For Developers
 
 Other plugins can use PHPMailer exactly like before; they just need to

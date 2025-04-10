@@ -77,6 +77,16 @@ alternative Maßnahmen ergreifen müssen. Bevor sie die sensiblen Anmeldedaten
 in die Konfiguration eintragen, überprüfen Sie, ob die System-Prüfung bezüglich
 des Zugriffschutzes von `config.php` erfolgreich ist.
 
+Haben Sie Schwierigkeiten mit der SMTP Konfiguration,
+d.h. ein Plugin, das Phpmailer_XH verwendet, kann keine E-Mails versenden,
+können Sie die `SMTP` → `Debug` Konfigurationsoption aktivieren.
+Sind Sie als Administrator angemeldet, wird ein detailliertes Protokoll
+der Kommunikation mit dem SMTP Server angezeig, wenn eine E-Mail versandt wird
+(beachten Sie, dass diese Debugausgabe sensible Information enthalten kann;
+daher wird sie niemals Besuchern Ihrer Website angezeigt).
+Die Debugausgabe genügt vielleicht schon, damit Sie das Problem selbst
+beheben können; andernfalls siehe [Fehlerbehebung](#fehlerbehebung).
+
 ### Für Entwickler
 
 Andere Plugins können PHPMailer genau wie zuvor verwenden; sie müssen
