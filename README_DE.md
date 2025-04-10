@@ -57,6 +57,25 @@ Ihren Anforderungen anpassen.
 
 ## Verwendung
 
+Standardmäßig verwendet Phpmailer_XH die `mail()` Funktion von PHP,
+die normalerweise nur ein einfacher sendmail Wrapper ist.
+Diese Art E-Mails zu versenden hat einige Einschränkungen,
+und wird von einigen Webservern nicht mehr unterstützt.
+
+Daher tun Sie gut daran SMTP-Support in der Konfiguration zu aktivieren.
+Es ist wichtig alle relevanten Konfigurationeinstellungen sorgfältig
+einzutragen; erfragen Sie die nötigen Information von Ihrem Mail-Provider.
+Erfordert der SMTP-Server Authentifizierung (recht wahrscheinlich),
+müssen Sie den Benutzernamen und das Passwort in der Konfiguration eintragen.
+Beachten Sie, dass diese Anmeldedaten notwendigerweise im Klartext in
+`plugins/phpmailer/config/config.php` gespeichert werden.
+Daher ist es wichtig, dass der Konfigurationsorder von Phpmailer_XH vor
+direktem Zugriff geschützt ist. Das Plugin liefert eine entsprechende `.htaccess`
+aus, aber diese wird u.U. nicht von Ihrem Server erkannt, so dass Sie selbst
+alternative Maßnahmen ergreifen müssen. Bevor sie die sensiblen Anmeldedaten
+in die Konfiguration eintragen, überprüfen Sie, ob die System-Prüfung bezüglich
+des Zugriffschutzes von `config.php` erfolgreich ist.
+
 ## Fehlerbehebung
 
 Melden Sie Programmfehler und stellen Sie Supportanfragen entweder auf
