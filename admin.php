@@ -21,7 +21,7 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 
-const PHPMAILER_VERSION = "6.9.3-dev";
+const PHPMAILER_VERSION = "6.9.3";
 
 function phpmailer_info(): string
 {
